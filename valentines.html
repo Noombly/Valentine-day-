@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6e6;
+            text-align: center;
+            padding-top: 30px;
+            overflow: hidden;
+            margin: 0;
+        }
+        h1 {
+            color: #ff4d4d;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.2em;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #yesButton {
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #noButton {
+            background-color: #f44336;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #yesButton:hover {
+            background-color: #45a049;
+            transform: scale(1.1); /* Slightly enlarge on hover */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+        #noButton:hover {
+            background-color: #da190b;
+            transform: scale(1.1); /* Slightly enlarge on hover */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+        .emoji-reaction {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+        /* Mobile-specific styles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine? ❤️</h1>
+    
+    <div class="buttons">
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+    </div>
+    <div id="reactionContainer"></div>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+        const reactionContainer = document.getElementById('reactionContainer');
+
+        // Array of messages for the "No" button
+        const noButtonTexts = [
+            "Are you sure?",
+            "Really sure??",
+            "Are you positive?",
+            "Pookie please",
+            "Just think about it",
+            "If you say no, I will be very sad",
+            "I will be very sad",
+            "I will be very very very sad"
+        ];
+
+        // Array of sad emojis for reactions
+        const sadEmojis = ["😢", "💔", "🥺", "😭", "😩", "🙈", "😿", "😤", "😠", "😞"];
+
+        let noButtonClickCount = 0;
+
+        noButton.addEventListener('click', () => {
+            noButtonClickCount++;
+
+            // Update the "No" button text (loop through messages)
+            noButton.textContent = noButtonTexts[(noButtonClickCount - 1) % noButtonTexts.length];
+
+            // Update the emoji reaction (only one emoji visible at a time)
+            reactionContainer.textContent = sadEmojis[(noButtonClickCount - 1) % sadEmojis.length];
+
+            // Exit the page after 10 clicks
+            if (noButtonClickCount === 10) {
+                window.close(); // Close the browser tab or window
+            }
+        });
+
+        yesButton.addEventListener('click', () => {
+            document.body.innerHTML = "<h1 style='color: #4CAF50;'>Knew you would say yes! ❤️ Thanks for being my Valentine!</h1>";
+        });
+    </script>
+</body>
+</html>
