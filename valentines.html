@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine?</title>
     <style>
         body {
@@ -63,7 +63,11 @@
             }
             button {
                 font-size: 1em;
-                padding: 10px 20px;
+                padding: 15px 25px; /* Larger touch targets */
+                margin: 10px; /* Add spacing between buttons */
+            }
+            .emoji-reaction {
+                font-size: 1.5em; /* Slightly smaller emoji for mobile */
             }
         }
     </style>
@@ -95,7 +99,7 @@
         ];
 
         // Array of sad emojis for reactions
-        const sadEmojis = ["😢", "💔", "🥺", "😭", "😩", "🙈", "😿", "😤", "😠", "😞"];
+        const sadEmojis = ["😢", "💔", "🥺", "😭", "😩", "🙈", "😿", "😤", "😠", "🤬"];
 
         let noButtonClickCount = 0;
 
@@ -108,9 +112,9 @@
             // Update the emoji reaction (only one emoji visible at a time)
             reactionContainer.textContent = sadEmojis[(noButtonClickCount - 1) % sadEmojis.length];
 
-            // Exit the page after 10 clicks
+            // End the game after 10 clicks
             if (noButtonClickCount === 10) {
-                window.close(); // Close the browser tab or window
+                document.body.innerHTML = "<h1 style='color: #da190b;'>You rejected me too many times... 💔 Game Over!</h1>";
             }
         });
 
